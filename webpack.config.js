@@ -10,7 +10,7 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/index.jsx'
+    './web/index.jsx'
   ],
   output: {
     path: path.join(__dirname, 'build'),
@@ -46,7 +46,7 @@ module.exports = {
     ]
   },
   toolbox: {
-    theme: path.join(__dirname, '/src/toolbox-theme.scss')
+    theme: path.join(__dirname, '/web/toolbox-theme.scss')
   },
   postcss: [autoprefixer],
   plugins: [
