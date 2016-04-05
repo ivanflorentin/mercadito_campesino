@@ -11,13 +11,13 @@ import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-import * as reducers from './reducers'
+import reducers from './reducers'
 
 import React, {Component} from 'react'
-
 import style from './style'
-
 import MainContainer from './components/main'
+
+import CathegoryInput from './components/cathegories'
 
 const loggerMiddleware = createLogger()
 
@@ -41,6 +41,7 @@ render(
     <div>
       <Router history={history}>
 	<Route path="/" component={MainContainer} >
+	  <Route path='/cathegoryInput' component={CathegoryInput}/>
 	</Route>
       </Router>
     </div>

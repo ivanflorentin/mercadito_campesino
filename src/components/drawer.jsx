@@ -13,7 +13,9 @@ class MainDrawer extends Component {
     context.router
     this.handleRoute = this.handleRoute.bind(this)
     this.actions =  [
-      { name: 'home', label: 'Inicio', raised: true, accent: true, icon: 'home',
+      { name: 'home', label: 'Inicio', raised: false, accent: false, icon: 'home',
+	onClick:this.handleRoute},
+      { name: 'cathegoryInput', label: 'Crear Categoria', raised: false, accent: false, icon: 'playlist_add',
 	onClick:this.handleRoute}
     ];
     this.state = {active: false}
@@ -29,7 +31,11 @@ class MainDrawer extends Component {
       switch(options.target.name){
 	case 'home': {
 	  this.context.router.push('/')
-	    break	    
+	  break	    
+	}
+	case 'cathegoryInput': {
+	  this.context.router.push('cathegoryInput')
+	  break
 	}
       }
   }  
