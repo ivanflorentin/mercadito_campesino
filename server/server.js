@@ -9,7 +9,7 @@ const app = express()
 const compiler = webpack(config)
 
   
-app.use(express.static('www'))
+app.use(express.static('public'))
   
 app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
@@ -20,7 +20,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler))
   app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './www/index.html'))
+  res.sendFile(path.join(__dirname, './public/index.html'))
 })
   
 app.listen(8080, '0.0.0.0', (err) => {
