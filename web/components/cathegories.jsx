@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import Button from 'react-toolbox/lib/button'
 import Input from 'react-toolbox/lib/input'
 import { isAlphanumeric, contains } from 'validator'
-import * as actions  from '../actions'
+import {create_cathegory}  from '../actions'
 
 class CathegoryInput extends Component{
 
@@ -24,7 +24,7 @@ class CathegoryInput extends Component{
   }
 
   catSave(){
-    this.props.save(this.cathegory)
+    this.props.save({name:this.cathegory})
   }
   
   keyPress(e){
@@ -64,7 +64,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
   return {
-    save: (cat) =>{console.log(actions)}
+    save: (cat) =>{dispatch(create_cathegory(cat))}
   }
 }
 
