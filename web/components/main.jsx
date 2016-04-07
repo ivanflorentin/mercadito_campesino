@@ -31,7 +31,7 @@ class MainContainer extends Component {
   render(){	
     return (		
 	    <ToolboxApp>
-	      <Header>
+	      <Header props={this.props} context={this.context}>
 		<div> Add Content Here</div>
 	      </Header>
 	      <MainDrawer />
