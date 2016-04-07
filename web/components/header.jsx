@@ -17,7 +17,10 @@ const MainMenu = (props, context) => (
     <MenuItem value='clients' icon='people' caption='Clientes'
 	      onClick={()=> context.router.push('/clientList')}/>
     <MenuItem value='producers' icon='people_outline' caption='Productores' />
-    <MenuItem value='products' icon='shopping_basket' caption='Productos' />
+    <MenuItem value='products' icon='shopping_basket' caption='Productos'
+	      onClick={()=> context.router.push('/productList')}/>
+    <MenuItem value='products' icon='shopping_basket' caption='Agregar Producto'
+	      onClick={()=> context.router.push('/productEdit')}/>
     <MenuItem value='distributors' icon='store' caption='Distribuidores' />
     <MenuDivider />
     <MenuItem value='home' icon='home' caption='Inicio' onClick={()=>{context.router.push('/')}}/>

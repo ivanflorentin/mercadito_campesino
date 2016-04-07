@@ -12,10 +12,11 @@ import {add_client} from '../actions'
 let ClientList = (props, context) =>{
   const clients = props.clients
   const ClientModel = {
-    name: {type: String},
-    tel: {type: String},
-    distributor_id: {type: String}
+    name: {type: String, title: 'Nombres'},
+    tel: {type: String, title: 'Telefono'},
+    distributor_id: {type: String, title: 'Centro de Distribucion'}
   }
+
   return(<Table
 	     model={ClientModel}
 	     source={clients}
@@ -90,15 +91,4 @@ const mapDispatchToProps = (dispatch) =>{
 ClientEdit = connect(mapStateToProps)(ClientEdit)
 
 export {ClientEdit, ClientList}
-/*()=>{
-  return(
-    <div>HOLA</div>
-  )
-
-
-}
-
-
-
-}*/
 
