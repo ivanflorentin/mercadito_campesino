@@ -34,7 +34,6 @@ class MainContainer extends Component {
 	      <Header props={this.props} context={this.context}>
 		<div> Add Content Here</div>
 	      </Header>
-	      <MainDrawer />
 	      <section className={style.content}>
 		{this.props.children}
 	      </section>
