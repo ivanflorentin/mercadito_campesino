@@ -9,13 +9,18 @@ import style from './style'
 
 const MainMenu = (props, context) => (
   <IconMenu icon='apps' position='top-right' menuRipple>
+    <MenuItem value='pedidos' icon='shopping_cart' caption='Pedidos' />
     <MenuItem value='cathegory' icon='add_box' caption='Categoria'
-	      onClick={()=> context.router.push('/cathegoryInput')}
-    />
-    <MenuItem value='client' icon='face' caption='Clientes' />
-    <MenuItem value='settings' icon='open_in_browser' caption='Open in app' />
+	      onClick={()=> context.router.push('/cathegoryInput')}/>
+    <MenuItem value='client_edit' icon='person_add' caption='Agregar Cliente'
+	      onClick={()=> context.router.push('/clientEdit')}/>
+    <MenuItem value='clients' icon='people' caption='Clientes'
+	      onClick={()=> context.router.push('/clientList')}/>
+    <MenuItem value='producers' icon='people_outline' caption='Productores' />
+    <MenuItem value='products' icon='shopping_basket' caption='Productos' />
+    <MenuItem value='distributors' icon='store' caption='Distribuidores' />
     <MenuDivider />
-    <MenuItem value='signout' icon='delete' caption='Delete' disabled />
+    <MenuItem value='home' icon='home' caption='Inicio' onClick={()=>{context.router.push('/')}}/>
   </IconMenu>
 )
 

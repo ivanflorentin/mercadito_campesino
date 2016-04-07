@@ -2,10 +2,13 @@
 
 import { combineReducers } from 'redux'
 
-import * as server from './server'
-import * as cathegory from './cathegory'
+import {server} from './server'
+import {cathegory} from './cathegory'
+import {clients} from './clients'
+
 
 export const reducers = combineReducers({
-  ...server,
-  ...cathegory
+  server,
+  cathegory,
+  clients
 })
