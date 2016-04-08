@@ -1,21 +1,22 @@
 'use strict'
 
 
-import {LOAD_PRODUCERS} from '../constants'
+import {LOAD_PRODUCERS,
+	ADD_PRODUCER,
+	DELETE_PRODUCER,
+	REPLACE_PRODUCER} from '../constants'
 
 export const producers = (state = [], action)=>{
   switch (action.type){
     case LOAD_PRODUCERS:{
       return action.producers
     }
+    case ADD_PRODUCER: {
+      const next_state = [ ...state, action.producer ]
+      return next_state
+    }
     default:{
-      const producers = [
-	{id: 1, name: 'Productor 1'},	
-	{id: 2, name: 'Productor 2'},
-	{id: 3, name: 'Productor 3'},
-	{id: 4, name: 'Productor 4'}
-      ]
-      return producers
+      return state
     }
   }
 }

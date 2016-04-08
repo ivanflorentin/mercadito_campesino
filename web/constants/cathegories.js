@@ -1,0 +1,5 @@
+'use strict'
+
+export const CREATE_CATHEGORY = 'CREATE_CATHEGORY'
+export const ADD_CATHEGRORY = 'ADD_CATHEGRORY'
+export const LOAD_CATHEGORIES = 'LOAD_CATHEGORIES'

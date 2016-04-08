@@ -39,13 +39,8 @@ ClientList = connect(clientList_mapStateToProps)(ClientList)
 class ClientEdit extends Component{
   constructor(props){
     super(props)
-
-    this.distributors = [
-	{value: 'd1', label: 'Centro 1'},
-	{value: 'd2', label: 'Centro 2'},
-	{value: 'd3', label: 'Local 3'},
-	{value: 'd4', label: 'Local 4'}
-      ]
+      
+    this.distributors = pros.distributors
     this.state =  this.distributors[0]
     this.selectDistributor = this.selectDistributor.bind(this)
     this.render = this.render.bind(this)
@@ -62,7 +57,7 @@ class ClientEdit extends Component{
 		  value={this.state.distributor}
 		  onChange={this.selectDistributor}
 	/>
-	<Button label='Crear Cliente' raised primary />
+	<Button label='Guardar' raised primary />
       </div>
     )
   }
@@ -77,13 +72,13 @@ ClientEdit.propTypes = {
 
 const mapStateToProps = (state) =>{
   return {
-    state: state 
+    clients: state.app.clients 
   }
 }
 
 const mapDispatchToProps = (dispatch) =>{
   return {
-    add_client: (client) =>{dispatch(add_client(client))}
+    save: (client) =>{dispatch(add_client(client))}
   }
 }
 

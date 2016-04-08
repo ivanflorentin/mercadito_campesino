@@ -1,6 +1,16 @@
 'use strict'
-import {CREATE_CATHEGORY} from '../constants'
+import {CREATE_CATHEGORY,
+	ADD_CATHEGRORY,
+	LOAD_CATHEGORIES} from '../constants'
 
+
+export const add_cathegory = (cathegory)=>{
+  return {type: ADD_CATHEGRORY, cathegory}
+}
+
+export const load_cathegories = (cathegories) =>{
+  return {type: LOAD_CATHEGORIES, cathegories}
+}
 
 export const create_cathegory = (cathegory) =>{
   console.log(cathegory)

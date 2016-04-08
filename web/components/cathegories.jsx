@@ -6,12 +6,11 @@ import { connect } from 'react-redux'
 import {Button, Input, Table}  from 'react-toolbox'
 
 import { isAlphanumeric, contains } from 'validator'
-import {create_cathegory}  from '../actions'
+import {add_cathegory}  from '../actions'
 
 
 
 let CathegoryList = (props, context) =>{
-  console.log('cathegories', props)
   const cathegories = props.cathegories  
   const CathegoryModel = {
     name: {type: String, title:'Nombre'}
@@ -20,8 +19,7 @@ let CathegoryList = (props, context) =>{
   return(<Table
 	     model={CathegoryModel}
 	     source={cathegories}
-	 />
-    
+	 />    
   )
 }
 
@@ -42,24 +40,24 @@ class CathegoryInput extends Component{
 
   constructor (props) {
     super(props)
-    this.catChange = this.catChange.bind(this)
-    this.catSave = this.catSave.bind(this)
+    this.cathegory = props.cathegory || {}
+    this.change = this.change.bind(this)
+    this.save = this.save.bind(this)
     this.keyPress = this.keyPress.bind(this)
-    this.cathegory = ''
     this.state = {}
   }
   
-  catChange(e){
-    this.cathegory = e
+  change(value){
+    this.cathegory.name = value
   }
 
-  catSave(){
-    this.props.save({name:this.cathegory})
+  save(){
+    this.props.save(this.cathegory)
   }
   
   keyPress(e){
     if (e.which == 13 || e.keyCode == 13){
-      this.catSave()
+      this.Save()
     }
   }
   
@@ -70,10 +68,9 @@ class CathegoryInput extends Component{
 	       name='cathegory'
 	       floating={true}
 	       error={this.state.error}
-	       onChange={this.catChange}
-	       onKeyPress={this.keyPress}
-	/>
-	<Button label='Crear' raised primary onClick={this.catSave}/>
+	       onChange={this.change}
+	       onKeyPress={this.keyPress}/>
+	<Button label='Guardar' raised primary onClick={this.save}/>
       </div>
     )
   }
@@ -88,13 +85,13 @@ CathegoryInput.propTypes = {
  
 const mapStateToProps = (state) =>{
   return {
-    state: state 
+    cathegory: state.app.cathegory 
   }
 }
 
 const mapDispatchToProps = (dispatch) =>{
   return {
-    save: (cat) =>{dispatch(create_cathegory(cat))}
+    save: (cathegory) =>{dispatch(add_cathegory(cathegory))}
   }
 }
 

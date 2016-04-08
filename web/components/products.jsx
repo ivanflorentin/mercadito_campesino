@@ -8,7 +8,6 @@ import {Button, Input, Dropdown, Table} from 'react-toolbox'
 import { isAlphanumeric, contains } from 'validator'
 
 
-
 let ProductList = (props, context) =>{
   const products = props.products
   const ProductModel = {
@@ -23,7 +22,6 @@ let ProductList = (props, context) =>{
 	     model={ProductModel}
 	     source={products}
 	 />
-    
   )
 }
 

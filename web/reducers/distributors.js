@@ -1,21 +1,18 @@
 'use strict'
 
 import {LOAD_DISTRIBUTORS,
-	ADD_DISTRIBUTORS} from '../constants'
+	ADD_DISTRIBUTOR} from '../constants'
 
 export const distributors = (state = [], action)=>{
   switch (action.type){
     case LOAD_DISTRIBUTORS:{
       return action.distributors
     }
+    case ADD_DISTRIBUTOR: {
+      return [...state, action.distributor]
+    }
     default:{
-      const distributors = [
-	{id: 1, name: 'Distribuidor 1'},	
-	{id: 2, name: 'Distribuidor 2'},
-	{id: 3, name: 'Distribuidor 3'},
-	{id: 4, name: 'Distribuidor 4'}
-      ]
-      return distributors
+      return state
     }
   }
 }
