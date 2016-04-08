@@ -38,13 +38,14 @@ CathegoryList = connect(cathegoryList_mapStateToProps)(CathegoryList)
 
 class CathegoryInput extends Component{
 
-  constructor (props) {
+  constructor (props, context) {
     super(props)
     this.cathegory = props.cathegory || {}
     this.change = this.change.bind(this)
     this.save = this.save.bind(this)
     this.keyPress = this.keyPress.bind(this)
     this.state = {}
+    this.context = context    
   }
   
   change(value){
@@ -53,6 +54,8 @@ class CathegoryInput extends Component{
 
   save(){
     this.props.save(this.cathegory)
+    this.context.router.push('/cathegoryList')
+    
   }
   
   keyPress(e){
@@ -80,8 +83,11 @@ class CathegoryInput extends Component{
 CathegoryInput.propTypes = {
   router: PropTypes.object,
   props: PropTypes.object,
-} 
+}
 
+CathegoryInput.contextTypes = {
+  router: React.PropTypes.object.isRequired
+}
  
 const mapStateToProps = (state) =>{
   return {

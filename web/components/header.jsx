@@ -47,7 +47,7 @@ const MainMenu = (props, context) => (
 
   
 MainMenu.contextTypes = {
-    router: React.PropTypes.object.isRequired,
+    router: React.PropTypes.object.isRequired
 }
 const MainAppBar =(props, context)=> {
 

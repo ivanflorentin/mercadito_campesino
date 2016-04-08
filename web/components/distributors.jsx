@@ -33,16 +33,18 @@ DistributorList = connect(distributorList_mapStateToProps)(DistributorList)
 
 
 class DistributorEdit extends Component{
-  constructor(props){
+  constructor(props, context){
     super(props)
     this.distributor = props.distributor || {}
     this.save = this.save.bind(this)
     this.keyPress = this.keyPress.bind(this)
-    this.change = this.change.bind(this)  
+    this.change = this.change.bind(this)
+    this.context = context
   }
   
   save(){
     this.props.save(this.distributor)
+    this.context.router.push('/DistributorList')  
   }
   
   change(e){
@@ -63,7 +65,7 @@ class DistributorEdit extends Component{
 	       onKeyPress={this.keyPress}
 	       onChange={this.change}
 	/>
-	<Button label='Crear Distribuidor' raised primary onClick={this.save}/>
+	<Button label='Guardar' raised primary onClick={this.save}/>
       </div>
     )
   }
@@ -74,7 +76,9 @@ DistributorEdit.propTypes = {
   router: PropTypes.object,
   props: PropTypes.object,
 } 
-
+DistributorEdit.contextTypes = {
+  router: PropTypes.object.isRequired
+}
 
 const mapStateToProps = (state) =>{
   return {

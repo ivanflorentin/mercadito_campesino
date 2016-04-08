@@ -36,16 +36,19 @@ ProducerList = connect(producerList_mapStateToProps)(ProducerList)
 
 
 class ProducerEdit extends Component{
-  constructor(props){
+
+  constructor(props, context){
     super(props)
     this.producer = props.producer || {}
     this.save = this.save.bind(this)
     this.keyPress = this.keyPress.bind(this)
-    this.change = this.change.bind(this)  
+    this.change = this.change.bind(this)
+    this.context =context  
   }
   
   save(){
     this.props.save(this.producer)
+    this.context.router.push('/producerList')  
   }
   
   change(e){
@@ -66,7 +69,7 @@ class ProducerEdit extends Component{
 	       onKeyPress={this.keyPress}
 	       onChange={this.change}
 	/>
-	<Button label='Crear Productor' raised primary onClick={this.save}/>
+	<Button label='Guardar' raised primary onClick={this.save}/>
       </div>
     )
   }
@@ -77,7 +80,9 @@ ProducerEdit.propTypes = {
   props: PropTypes.object,
 } 
 
-
+ProducerEdit.contextTypes = {
+  router: PropTypes.object.isRequired
+}
 const mapStateToProps = (state) =>{
   return {
     state: state 
