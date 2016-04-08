@@ -3,7 +3,7 @@
 import { combineReducers } from 'redux'
 
 import {server} from './server'
-import {cathegory} from './cathegory'
+import {cathegories} from './cathegories'
 import {clients} from './clients'
 import {products} from './products'
 import {distributors} from './distributors'
@@ -11,7 +11,7 @@ import {producers} from './producers'
 
 export const reducers = combineReducers({
   server,
-  cathegory,
+  cathegories,
   clients,
   products,
   distributors,

@@ -3,10 +3,40 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux' 
-import Button from 'react-toolbox/lib/button'
-import Input from 'react-toolbox/lib/input'
+import {Button, Input, Table}  from 'react-toolbox'
+
 import { isAlphanumeric, contains } from 'validator'
 import {create_cathegory}  from '../actions'
+
+
+
+let CathegoryList = (props, context) =>{
+  console.log('cathegories', props)
+  const cathegories = props.cathegories  
+  const CathegoryModel = {
+    name: {type: String, title:'Nombre'}
+  }
+
+  return(<Table
+	     model={CathegoryModel}
+	     source={cathegories}
+	 />
+    
+  )
+}
+
+CathegoryList.propTypes = {
+  context: PropTypes.object,
+  props: PropTypes.object,
+}
+
+
+const cathegoryList_mapStateToProps = ({app}) => {
+  return {cathegories: app.cathegories}
+}
+
+CathegoryList = connect(cathegoryList_mapStateToProps)(CathegoryList)
+
 
 class CathegoryInput extends Component{
 
@@ -70,5 +100,5 @@ const mapDispatchToProps = (dispatch) =>{
 
 CathegoryInput = connect(mapStateToProps, mapDispatchToProps)(CathegoryInput)
 
-export default CathegoryInput
+export {CathegoryInput, CathegoryList}
 

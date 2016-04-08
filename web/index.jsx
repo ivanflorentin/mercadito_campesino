@@ -17,7 +17,7 @@ import React, {Component} from 'react'
 import style from './style'
 import MainContainer from './components/main'
 
-import CathegoryInput from './components/cathegories'
+import {CathegoryInput, CathegoryList} from './components/cathegories'
 import {ClientEdit, ClientList} from './components/client'
 import {ProductList, ProductEdit} from './components/products'
 import {ProducerList, ProducerEdit} from './components/producers'
@@ -46,6 +46,7 @@ render(
     <div>
       <Router history={history}>
 	<Route path="/" component={MainContainer} >
+	  <Route path='/cathegoryList' component={CathegoryList}/>
 	  <Route path='/cathegoryInput' component={CathegoryInput}/>
 	  <Route path='/clientEdit' component={ClientEdit}/>
 	  <Route path='/clientList' component={ClientList}/>
