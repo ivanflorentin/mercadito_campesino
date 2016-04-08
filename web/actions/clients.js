@@ -9,11 +9,10 @@ const create_client = (client) => {
   } 
 }
 
+
 export const add_client = (client) =>{
-  console.log('outside:', client)
   return function(dispatch){
     dispatch(create_client(client))
-    console.log('inside:', client)
   }  
 
 }
