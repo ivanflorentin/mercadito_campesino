@@ -7,7 +7,7 @@ import {Button, Input, Dropdown, Table} from 'react-toolbox'
 
 
 let ProducerList = (props, context) =>{
-  const producers = props.products
+  const producers = props.producers
   const ProducerModel = {
     name: {type: String, title:'Nombre'}
   }

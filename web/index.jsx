@@ -21,7 +21,7 @@ import CathegoryInput from './components/cathegories'
 import {ClientEdit, ClientList} from './components/client'
 import {ProductList, ProductEdit} from './components/products'
 import {ProducerList, ProducerEdit} from './components/producers'
-
+import {DistributorList, DistributorEdit} from './components/distributors'
 
 const loggerMiddleware = createLogger()
 
@@ -53,6 +53,8 @@ render(
 	  <Route path='/ProductEdit' component={ProductEdit}/>
 	  <Route path='/ProducerList' component={ProducerList}/>
 	  <Route path='/ProducerEdit' component={ProducerEdit}/>
+	  <Route path='/DistributorList' component={DistributorList}/>
+	  <Route path='/DistributorEdit' component={DistributorEdit}/>
 	</Route>
       </Router>
     </div>

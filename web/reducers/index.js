@@ -6,10 +6,14 @@ import {server} from './server'
 import {cathegory} from './cathegory'
 import {clients} from './clients'
 import {products} from './products'
+import {distributors} from './distributors'
+import {producers} from './producers'
 
 export const reducers = combineReducers({
   server,
   cathegory,
   clients,
-  products
+  products,
+  distributors,
+  producers
 })
