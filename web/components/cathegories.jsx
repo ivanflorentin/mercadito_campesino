@@ -16,11 +16,13 @@ let CathegoryList = (props, context) =>{
     name: {type: String, title:'Nombre'}
   }
 
-  return(<Table
-	     model={CathegoryModel}
-	     source={cathegories}
-	 />    
-  )
+  return(
+    <div>
+      <Table
+	model={CathegoryModel}
+	source={cathegories}
+      />
+    </div>)
 }
 
 CathegoryList.propTypes = {
@@ -67,6 +69,7 @@ class CathegoryInput extends Component{
   render(){
     return (
       <div>
+	<h3>Agregar Categoria</h3>
 	<Input type='text' label='Categria'
 	       name='cathegory'
 	       floating={true}

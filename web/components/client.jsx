@@ -10,19 +10,23 @@ import { isAlphanumeric, contains } from 'validator'
 import {add_client} from '../actions'
 
 let ClientList = (props, context) =>{
-  console.log('clientlist', props)
   const clients = props.clients
   const ClientModel = {
     name: {type: String, title: 'Nombres'},
     tel: {type: String, title: 'Telefono'},
     distributor: {type: String, title: 'Centro de Distribucion'}
   }
-
-  return(<Table
-	     model={ClientModel}
-	     source={clients}
-	 />
-  )
+  console.log(props)
+  return(
+    <div>
+    <h3>Clientes
+    <Button icon='add' floating accent mini
+    onClick={()=>{context.router.push('/clientEdit')}}/></h3>
+      <Table
+	  model={ClientModel}
+	  source={clients}
+      />
+    </div>)
 }
 
 ClientList.propTypes = {
@@ -30,13 +34,18 @@ ClientList.propTypes = {
   props: PropTypes.object,
 }
 
+ClientList.contextTypes = {
+  router: PropTypes.object.isRequired,
+  props: PropTypes.object,
+}
+
 const clientList_mapStateToProps = ({app}) => {
-  console.log('in map', app)
   let clients = []  
   if (app.clients){  
     clients = app.clients.map((client, index)=>{
-      client.distributor = app.distributors[client.distributor_index].name
-      console.log('Cliente ===>', client)
+      if (app.distributors.legth >client.distributor_index){
+	client.distributor = app.distributors[client.distributor_index].name
+      }
       return client
     })
   }
@@ -53,7 +62,7 @@ class ClientEdit extends Component{
 
     super(props)
     this.props = props
-    console.log('constructor', props)
+    //console.log('constructor', props)
     if (props.distributors && props.distributors.length > 0){
       this.distributors = props.distributors.map((dist, index)=>{
 	console.log('dist', dist, index)
@@ -67,7 +76,6 @@ class ClientEdit extends Component{
     }else{
       this.state = {}
     }
-//    console.log('distributors',this.distributors, 'state', this.state)
 
     this.selectDistributor = this.selectDistributor.bind(this)
     this.render = this.render.bind(this)
@@ -100,7 +108,7 @@ class ClientEdit extends Component{
   
   render () {
     let dropdown
-    console.log('render', this)
+    //console.log('render', this)
     let dist 
     if (this.state.distributor && this.state.distributor_index )
       dist = this.state.distributor_index
@@ -111,6 +119,7 @@ class ClientEdit extends Component{
     }
     return (
       <div>
+	<h3>Editar Cliente</h3>
 	<Input type='text' label='Nombres' name='name' onChange={this.nameChange}/>
 	<Input type='number' label='Telefono' name='tel'onChange={this.telChange}/>
 	{dropdown}

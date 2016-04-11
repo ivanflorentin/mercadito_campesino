@@ -11,11 +11,14 @@ let DistributorList = (props, context) =>{
     name: {type: String, title:'Nombre'}
   }
 
-  return(<Table
-	     model={DistributorModel}
-	     source={distributors}
-	 />    
-  )
+  return(
+    <div>
+      <h3>Centros de Distribucion</h3>
+      <Table
+	  model={DistributorModel}
+	  source={distributors}
+      />    
+    </div>)
 }
 
 DistributorList.propTypes = {
@@ -61,6 +64,7 @@ class DistributorEdit extends Component{
   render () {
     return (
       <div>
+	<h3>Agregar Centro de Distribucion</h3>
 	<Input type='text' label='Nombre' name='name'
 	       onKeyPress={this.keyPress}
 	       onChange={this.change}

@@ -13,10 +13,11 @@ let ProducerList = (props, context) =>{
     name: {type: String, title:'Nombre'}
   }
 
-  return(<Table
-	     model={ProducerModel}
-	     source={producers}
-	 />  
+  return(
+    <div>
+      <h3>Productores</h3>
+      <Table model={ProducerModel} source={producers}/>
+    </div>
   )
 }
 
@@ -64,6 +65,7 @@ class ProducerEdit extends Component{
   render () {
     return (
       <div>
+	<h3> Agregar Productor</h3>
 	<Input type='text' label='Nombre'
 	       name='name'
 	       onKeyPress={this.keyPress}
