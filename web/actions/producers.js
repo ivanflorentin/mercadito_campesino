@@ -11,7 +11,6 @@ export const load_producers = (producers) =>{
 }
 
 export const add_producer = (producer) =>{
-  console.log('on action', producer)
   return {type: ADD_PRODUCER, producer}
 }
 

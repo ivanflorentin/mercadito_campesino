@@ -6,7 +6,6 @@ import {VALIDATE_PRODUCT} from '../constants'
 export const product = (state = {}, action) =>{
   switch (action.type){
     case VALIDATE_PRODUCT: {
-      console.log('validate', action.product)
 	let product = Object.assign({}, action.product)
 	product.isValid = true
 	if (isNull(product.name)){

@@ -1,8 +1,8 @@
 'use strict'
 import *  as productReducer  from './product'
 import {validateProduct} from '../actions'
-
-import {LOAD_PRODUCTS,
+import {VALIDATE_PRODUCT,
+	LOAD_PRODUCTS,
 	SAVE_PRODUCT} from '../constants'
 
 export const products = (state = [], action) =>{
@@ -11,8 +11,8 @@ export const products = (state = [], action) =>{
       return action.products
     }
     case SAVE_PRODUCT: {
-      console.log('save product', action);
-      const validated = productReducer.product(validateProduct(product));
+      const validated = productReducer.product({},
+		{type: VALIDATE_PRODUCT, product: action.product})
       if (validated.isValid){
 	return [...state, validated]
       }

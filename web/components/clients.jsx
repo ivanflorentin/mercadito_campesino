@@ -16,7 +16,7 @@ let ClientList = (props, context) =>{
     tel: {type: String, title: 'Telefono'},
     distributor: {type: String, title: 'Centro de Distribucion'}
   }
-  console.log(props)
+
   return(
     <div>
     <h3>Clientes
@@ -65,7 +65,7 @@ class ClientEdit extends Component{
     //console.log('constructor', props)
     if (props.distributors && props.distributors.length > 0){
       this.distributors = props.distributors.map((dist, index)=>{
-	console.log('dist', dist, index)
+	//console.log('dist', dist, index)
 	return {value: index, label: dist.name }
       })
     }
@@ -108,7 +108,6 @@ class ClientEdit extends Component{
   
   render () {
     let dropdown
-    //console.log('render', this)
     let dist 
     if (this.state.distributor && this.state.distributor_index )
       dist = this.state.distributor_index

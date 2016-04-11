@@ -67,12 +67,10 @@ class  ProductEdit extends Component {
       buy_price: refs.buy_price.refs.input.value,
       sell_price: refs.sell_price.refs.input.value
     }
-    //console.log('product: ' ,this.product)
     this.props.validator(this.product)
   }
   
   save(){
-    //this.validate()
     if (this.product.isValid){
       this.props.save(this.product)
     }
