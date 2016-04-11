@@ -22,7 +22,10 @@ let ProductList = (props, context) =>{
 
   return(
     <div>
-      <h3>Productos</h3>
+      <h3>Productos
+      	<Button icon='add' floating accent mini
+		onClick={()=>{context.router.push('/productEdit')}}/>
+      </h3>
       <Table model={ProductModel} source={products}/>
     </div>)
 }
@@ -32,6 +35,9 @@ ProductList.propTypes = {
   props: PropTypes.object,
 }
 
+ProductList.contextTypes = {
+  router: PropTypes.object.isRequired
+}
 
 const productList_mapStateToProps = ({app}) => {
   return {products: app.products}

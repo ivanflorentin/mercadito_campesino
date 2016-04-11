@@ -18,10 +18,11 @@ let CathegoryList = (props, context) =>{
 
   return(
     <div>
-      <Table
-	model={CathegoryModel}
-	source={cathegories}
-      />
+      <h3>Categorias de Productos
+	<Button icon='add' floating accent mini
+		onClick={()=>{context.router.push('/cathegoryEdit')}}/>
+      </h3>
+      <Table model={CathegoryModel} source={cathegories}/>
     </div>)
 }
 
@@ -30,6 +31,9 @@ CathegoryList.propTypes = {
   props: PropTypes.object,
 }
 
+CathegoryList.contextTypes = {
+  router: PropTypes.object.isRequired
+}
 
 const cathegoryList_mapStateToProps = ({app}) => {
   return {cathegories: app.cathegories}
@@ -38,7 +42,7 @@ const cathegoryList_mapStateToProps = ({app}) => {
 CathegoryList = connect(cathegoryList_mapStateToProps)(CathegoryList)
 
 
-class CathegoryInput extends Component{
+class CathegoryEdit extends Component{
 
   constructor (props, context) {
     super(props)
@@ -83,12 +87,12 @@ class CathegoryInput extends Component{
 }
 
 
-CathegoryInput.propTypes = {
+CathegoryEdit.propTypes = {
   router: PropTypes.object,
   props: PropTypes.object,
 }
 
-CathegoryInput.contextTypes = {
+CathegoryEdit.contextTypes = {
   router: React.PropTypes.object.isRequired
 }
  
@@ -104,7 +108,7 @@ const mapDispatchToProps = (dispatch) =>{
   }
 }
 
-CathegoryInput = connect(mapStateToProps, mapDispatchToProps)(CathegoryInput)
+CathegoryEdit = connect(mapStateToProps, mapDispatchToProps)(CathegoryEdit)
 
-export {CathegoryInput, CathegoryList}
+export {CathegoryEdit, CathegoryList}
 

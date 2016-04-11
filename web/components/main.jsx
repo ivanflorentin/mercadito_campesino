@@ -7,7 +7,7 @@ import Navigation from 'react-toolbox/lib/navigation'
 
 import { hashHistory, Router, Route, Link } from 'react-router'
 
-import Header from './header'
+import {MainAppBar, MainMenu} from './header'
 import MainDrawer from './drawer'
 import MainNavigation from './navigation'
 
@@ -31,9 +31,8 @@ class MainContainer extends Component {
   render(){	
     return (		
 	    <ToolboxApp>
-	      <Header props={this.props} context={this.context}>
-		<div> Add Content Here</div>
-	      </Header>
+	      <MainAppBar props={this.props} context={this.context}>
+	      </MainAppBar>
 	      <section className={style.content}>
 		{this.props.children}
 	      </section>

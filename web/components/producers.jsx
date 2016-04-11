@@ -15,7 +15,10 @@ let ProducerList = (props, context) =>{
 
   return(
     <div>
-      <h3>Productores</h3>
+      <h3>Productores
+      	<Button icon='add' floating accent mini
+		onClick={()=>{context.router.push('/producerEdit')}}/>
+      </h3>
       <Table model={ProducerModel} source={producers}/>
     </div>
   )
@@ -26,6 +29,9 @@ ProducerList.propTypes = {
   props: PropTypes.object,
 }
 
+ProducerList.contextTypes= {
+  router: PropTypes.object.isRequired
+}
 
 const producerList_mapStateToProps = ({app}) => {
   return {producers: app.producers}

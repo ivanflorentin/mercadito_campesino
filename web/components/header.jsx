@@ -10,14 +10,9 @@ import style from './style'
 const MainMenu = (props, context) => (
   <IconMenu icon='apps' position='top-right' menuRipple>
     <MenuItem value='pedidos' icon='shopping_cart' caption='Pedidos' />
-    <MenuItem value='cathegory' icon='add_box' caption='Agregar Categoria'
-	      onClick={()=> context.router.push('/cathegoryInput')}/>
 
     <MenuItem value='cathegories' icon='list' caption='Categorias'
 	      onClick={()=> context.router.push('/cathegoryList')}/>
-
-    <MenuItem value='client_edit' icon='person_add' caption='Agregar Cliente'
-	      onClick={()=> context.router.push('/clientEdit')}/>
     
     <MenuItem value='clients' icon='people' caption='Clientes'
 	      onClick={()=> context.router.push('/clientList')}/>
@@ -25,20 +20,13 @@ const MainMenu = (props, context) => (
     <MenuItem value='producers' icon='people_outline' caption='Productores'
 	      onClick={()=> context.router.push('/producerList')}/>
 
-    <MenuItem value='producer_edit' icon='person_outline' caption='Agregar Productor'
-	      onClick={()=> context.router.push('/producerEdit')}/>
 
     <MenuItem value='products' icon='shopping_basket' caption='Productos'
 	      onClick={()=> context.router.push('/productList')}/>
 
-    <MenuItem value='product_edit' icon='shopping_basket' caption='Agregar Producto'
-	      onClick={()=> context.router.push('/productEdit')}/>
 
     <MenuItem value='distributors' icon='store' caption='Distribuidores'
 	      onClick={()=> context.router.push('/distributorList')}/>
-
-    <MenuItem value='distributor_edit' icon='store' caption='Agregar Distribuidores'
-	      onClick={()=> context.router.push('/distributorEdit')}/>
 
     <MenuDivider />
     <MenuItem value='home' icon='home' caption='Inicio' onClick={()=>{context.router.push('/')}}/>
@@ -49,6 +37,7 @@ const MainMenu = (props, context) => (
 MainMenu.contextTypes = {
     router: React.PropTypes.object.isRequired
 }
+
 const MainAppBar =(props, context)=> {
 
   return (
@@ -64,6 +53,6 @@ const MainAppBar =(props, context)=> {
 MainAppBar.contextTypes = {
     router: React.PropTypes.object.isRequired,
 }
-export default MainAppBar
+export {MainAppBar, MainMenu}
 
 

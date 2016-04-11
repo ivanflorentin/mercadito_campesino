@@ -13,17 +13,21 @@ let DistributorList = (props, context) =>{
 
   return(
     <div>
-      <h3>Centros de Distribucion</h3>
-      <Table
-	  model={DistributorModel}
-	  source={distributors}
-      />    
+      <h3>Centros de Distribucion
+      	<Button icon='add' floating accent mini
+		onClick={()=>{context.router.push('/distributorEdit')}}/>
+      </h3>
+      <Table model={DistributorModel} source={distributors} />    
     </div>)
 }
 
 DistributorList.propTypes = {
   context: PropTypes.object,
   props: PropTypes.object,
+}
+
+DistributorList.contextTypes = {
+  router: PropTypes.object.isRequired
 }
 
 
