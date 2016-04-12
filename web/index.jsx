@@ -19,9 +19,14 @@ import MainContainer from './components/main'
 
 import {CathegoryEdit, CathegoryList} from './components/cathegories'
 import {ClientEdit, ClientList} from './components/clients'
-import {ProductList, ProductEdit} from './components/products'
-import {ProducerList, ProducerEdit} from './components/producers'
-import {DistributorList, DistributorEdit} from './components/distributors'
+import {ProductList,
+	ProductEdit} from './components/products'
+import {ProducerList,
+	ProducerEdit} from './components/producers'
+import {DistributorList,
+	DistributorEdit} from './components/distributors'
+import {PurchaseOrderList,
+	PurchaseOrderEdit} from './components/purchaseOrders'
 
 const loggerMiddleware = createLogger()
 
@@ -56,6 +61,8 @@ render(
 	  <Route path='/ProducerEdit' component={ProducerEdit}/>
 	  <Route path='/DistributorList' component={DistributorList}/>
 	  <Route path='/DistributorEdit' component={DistributorEdit}/>
+	  <Route path='/purchaseOrderList' component={PurchaseOrderList}/>
+	  <Route path='/purchaseOrderEdit' component={PurchaseOrderEdit}/>
 	</Route>
       </Router>
     </div>

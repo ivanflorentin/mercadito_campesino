@@ -7,4 +7,5 @@ export * from './products'
 export * from './product'
 export * from './distributors'
 export * from './producers'
+export * from './purchaseOrders'
 

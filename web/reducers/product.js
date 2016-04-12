@@ -1,7 +1,8 @@
 'use strict'
 import {isNull, trim} from 'validator'
 
-import {VALIDATE_PRODUCT} from '../constants'
+import {VALIDATE_PRODUCT,
+	CLEAR_PRODUCT} from '../constants'
 
 export const product = (state = {}, action) =>{
   switch (action.type){
@@ -16,6 +17,9 @@ export const product = (state = {}, action) =>{
       trim(product.name)
 	return product
     }
+    case CLEAR_PRODUCT: {
+      return {}
+    }  
     default: return state
   }
 }

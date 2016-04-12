@@ -7,7 +7,8 @@ import {Button, Input, Dropdown, Table} from 'react-toolbox'
 
 import { isAlphanumeric, contains } from 'validator'
 
-import {validateProduct, saveProduct} from '../actions'
+import {validateProduct,
+	saveProduct, clearProduct} from '../actions'
 
 
 let ProductList = (props, context) =>{
@@ -46,7 +47,6 @@ const productList_mapStateToProps = ({app}) => {
 ProductList = connect(productList_mapStateToProps)(ProductList)
 
 
-
 class  ProductEdit extends Component {
   constructor(props, context){
     super(props)
@@ -74,8 +74,8 @@ class  ProductEdit extends Component {
     if (this.product.isValid){
       this.props.save(this.product)
     }
-    this.context.router.push('/productList')
-      
+    this.props.clear()
+    this.context.router.push('/productList') 
   }
   
   render() {
@@ -136,6 +136,9 @@ const mapDispatchToProps = (dispatch) =>{
     },
     save: (product) => {
       return (dispatch(saveProduct(product)))
+    },
+    clear: () => {
+      return dispatch(clearProduct())
     }
   }
 }

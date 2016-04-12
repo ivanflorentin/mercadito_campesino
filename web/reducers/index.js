@@ -9,6 +9,8 @@ import {products} from './products'
 import {product} from './product'
 import {distributors} from './distributors'
 import {producers} from './producers'
+import {purchasOrders} from './purchaseOrders'
+
 
 export const reducers = combineReducers({
   server,
@@ -17,5 +19,6 @@ export const reducers = combineReducers({
   products,
   product,
   distributors,
-  producers
+  producers,
+  purchasOrders
 })

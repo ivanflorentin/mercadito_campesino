@@ -11,8 +11,9 @@ export const products = (state = [], action) =>{
       return action.products
     }
     case SAVE_PRODUCT: {
-      const validated = productReducer.product({},
-		{type: VALIDATE_PRODUCT, product: action.product})
+      const validated = productReducer.product(
+	{}, validateProduct(action.product)
+      )
       if (validated.isValid){
 	return [...state, validated]
       }
