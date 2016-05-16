@@ -30,11 +30,11 @@ app.use(require('webpack-hot-middleware')(compiler))
   res.sendFile(path.join(__dirname, './public/index.html'))
 })
   
-app.listen(8080, '0.0.0.0', (err) => {
+app.listen(9090, '0.0.0.0', (err) => {
   if (err) {
     console.log(err)
     return
   }  
-    console.log('Listening at http://0.0.0.0:8080')
+    console.log('Listening at http://0.0.0.0:9090')
   })
   

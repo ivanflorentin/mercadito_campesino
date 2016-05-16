@@ -3,29 +3,40 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux' 
-import {Button, Input, Dropdown, Table} from 'react-toolbox'
+import {Button, Input, Dropdown, Table,
+	List, ListSubHeader, ListItem} from 'react-toolbox'
 
 import { isAlphanumeric, contains } from 'validator'
 
-import {add_client} from '../actions'
+import {add_client, selectClient} from '../actions'
 
 let ClientList = (props, context) =>{
   const clients = props.clients
-  const ClientModel = {
-    name: {type: String, title: 'Nombres'},
-    tel: {type: String, title: 'Telefono'},
-    distributor: {type: String, title: 'Centro de Distribucion'}
-  }
-
+  console.log('clients', clients)
   return(
     <div>
-    <h3>Clientes
-    <Button icon='add' floating accent mini
-    onClick={()=>{context.router.push('/clientEdit')}}/></h3>
-      <Table
-	  model={ClientModel}
-	  source={clients}
-      />
+      <List selectable ripple>
+	<ListSubHeader caption='Clientes'/>
+	<Button icon='add' floating accent mini
+		onClick={()=>{context.router.push('/clientEdit')}}/>
+	
+	{clients.map((client, index)=>{
+	   
+	   return (<ListItem key={index} onClick={()=>{
+	       console.log('selected')
+		 
+	     }}>
+	             <Button icon='person' floating accent 
+		         onClick={()=>{
+		           console.log('clicked!')
+		         //this.props.selectClient(index)
+		         //context.router.push('/clientEdit')
+		       }}/>
+	             <h4>{client.name}</h4>
+		     <div>Telefono:  {client.tel}</div>
+	     </ListItem>)}
+	 )}
+      </List>  
     </div>)
 }
 
@@ -52,7 +63,14 @@ const clientList_mapStateToProps = ({app}) => {
   return {clients: clients}
 }
 
-ClientList = connect(clientList_mapStateToProps)(ClientList)
+const clientList_mapDispatchToProps = (dispatch)=>{
+  return ({
+    select: (client) =>{return dispatch(selectClient(client))}
+  })
+}
+
+ClientList = connect(clientList_mapStateToProps,
+		     clientList_mapDispatchToProps)(ClientList)
 
 
 

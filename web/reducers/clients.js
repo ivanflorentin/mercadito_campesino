@@ -1,6 +1,7 @@
 'use strict'
 import {CREATE_CLIENT,
-	LOAD_CLIENTS} from '../constants'
+	LOAD_CLIENTS,
+	SELECT_CLIENT} from '../constants'
 
 export const clients = (state = [], action) =>{
   switch (action.type){
@@ -14,4 +15,15 @@ export const clients = (state = [], action) =>{
       return state
     }
   } 
+}
+
+
+
+export const client = (state = {}, action) => {
+  switch (action.type){
+    case SELECT_CLIENT: {
+      return action.client
+    }
+    default: return state
+  }
 }
