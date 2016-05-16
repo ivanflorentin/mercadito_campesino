@@ -25,17 +25,14 @@ const reducer = combineReducers({
 const store = createStore(
   reducer
 )
-
-
-
-
 import {ClientEdit} from '../web/components/clients'
+const history = syncHistoryWithStore(createHistory('/clientEdit'), store)
 
 //TODO: make react-router warnings dissapear
-
+//{createHistory('/clientEdit')}
 const clientEditElem = (
   <Provider store={store} >
-  <Router history={createHistory('/clientEdit')} >
+  <Router history={history} >
   <Route path="/clientEdit" component={ClientEdit} />
   </Router>
   </Provider>
@@ -61,7 +58,15 @@ describe('With client Edit Interface ', () => {
       const nameInput = TestUtils.scryRenderedComponentsWithType(clientEdit, Input)[0]
       expect(nameInput.props.label).to.equal('Nombres')
     })
-    
+    it('should have a telephone input', ()=>{
+      const nameInput = TestUtils.scryRenderedComponentsWithType(clientEdit, Input)[1]
+      expect(nameInput.props.label).to.equal('Telefono')
+    }) 
+    it('should have a save button', ()=>{
+      const saveButton = TestUtils.scryRenderedComponentsWithType(clientEdit, Button)[0]
+      expect(saveButton.props.label).to.equal('Guardar')
+    })
+   
 })
   
   

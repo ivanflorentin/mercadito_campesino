@@ -70,14 +70,18 @@ const root = (
 )
   
 const renderedTree = render(root, document.getElementById('app'))
-
-import {Input} from 'react-toolbox' 
+/*
+import {Input, Button} from 'react-toolbox' 
   
 import TestUtils from 'react-addons-test-utils'
 const nameLabel = TestUtils.scryRenderedDOMComponentsWithTag(renderedTree, 'label')[0]
 console.log('input', nameLabel.textContent)
 
-  //--
+//--
 const nameInput = TestUtils.scryRenderedComponentsWithType(renderedTree, Input)[0]
 console.log('input', nameInput.props.label)
 
+  //--
+  const botones = TestUtils.scryRenderedComponentsWithType(renderedTree, Button)
+console.log('botones:',botones)
+*/
