@@ -5,6 +5,8 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux' 
 import {Button, Input, Dropdown, Table} from 'react-toolbox'
 
+import { isAlphanumeric, contains } from 'validator'
+
 import {validateProduct,
 	saveProduct, clearProduct} from '../actions'
 
