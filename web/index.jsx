@@ -43,7 +43,7 @@ const store = createStore(
   )
 )
 
-console.log('state in main: ' , store.getState())  
+//console.log('state in main: ' , store.getState())  
 const history = syncHistoryWithStore(browserHistory, store)
 
 const root = (   
@@ -70,18 +70,18 @@ const root = (
 )
   
 const renderedTree = render(root, document.getElementById('app'))
-/*
+
 import {Input, Button} from 'react-toolbox' 
   
 import TestUtils from 'react-addons-test-utils'
-const nameLabel = TestUtils.scryRenderedDOMComponentsWithTag(renderedTree, 'label')[0]
-console.log('input', nameLabel.textContent)
+const labels = TestUtils.scryRenderedDOMComponentsWithTag(renderedTree, 'label')
+console.log('labels', labels)
 
 //--
-const nameInput = TestUtils.scryRenderedComponentsWithType(renderedTree, Input)[0]
-console.log('input', nameInput.props.label)
+const inputs = TestUtils.scryRenderedComponentsWithType(renderedTree, Input)
+console.log('inputs', inputs)
 
-  //--
-  const botones = TestUtils.scryRenderedComponentsWithType(renderedTree, Button)
+//--
+const botones = TestUtils.scryRenderedComponentsWithType(renderedTree, Button)
 console.log('botones:',botones)
-*/
+

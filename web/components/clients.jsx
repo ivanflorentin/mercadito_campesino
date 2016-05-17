@@ -1,6 +1,4 @@
 'use strict'
-
-
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux' 
 import {Button, Input, Dropdown, Table,
@@ -8,34 +6,31 @@ import {Button, Input, Dropdown, Table,
 
 import { isAlphanumeric, contains } from 'validator'
 
-import {add_client, selectClient} from '../actions'
+import {saveClient, selectClient} from '../actions'
 
 let ClientList = (props, context) =>{
   const clients = props.clients
-  console.log('clients', clients)
+  //console.log('clientList clients', clients)
   return(
     <div>
       <List selectable ripple>
 	<ListSubHeader caption='Clientes'/>
 	<Button icon='add' floating accent mini
-		onClick={()=>{context.router.push('/clientEdit')}}/>
+		onClick={()=>{
+		    //props.deselectClient()
+		    context.router.push('/clientEdit')}}/>
 	
-	{clients.map((client, index)=>{
-	   
-	   return (<ListItem key={index} onClick={()=>{
-	       console.log('selected')
-		 
-	     }}>
-	             <Button icon='person' floating accent 
-		         onClick={()=>{
-		           console.log('clicked!')
-		         //this.props.selectClient(index)
-		         //context.router.push('/clientEdit')
-		       }}/>
-	             <h4>{client.name}</h4>
-		     <div>Telefono:  {client.tel}</div>
-	     </ListItem>)}
-	 )}
+	{clients.map((client, index)=>{   
+	   return (<ListItem
+		       key={index}
+		       caption={client.name}
+		       legend={client.phone}
+		       onClick={()=>{
+			   props.select(clients[index])
+			   //console.log('selected')
+			   context.router.push('/clientEdit')  
+			 }}/>
+	   )})}
       </List>  
     </div>)
 }
@@ -76,8 +71,104 @@ ClientList = connect(clientList_mapStateToProps,
 
   
 class ClientEdit extends Component{
-  constructor(props, context){
 
+  constructor(props, context){
+    super(props)
+      //console.log('edit', props.abogado)
+    this.state = props.client
+    this.save = this.save.bind(this)
+    this.formChange = this.formChange.bind(this)
+    this.keyPress = this.keyPress.bind(this)
+  }
+
+
+  save(){
+    this.props.save(this.state)
+    this.context.router.push('/clientList')
+  }
+  
+  formChange(e){
+    let client = {}
+    client.name = this.refs.name.refs.input.value
+    client.phone = this.refs.phone.refs.input.value
+    client.email = this.refs.email.refs.input.value
+    client.address = this.refs.address.refs.input.value
+    this.setState(client)
+  }
+
+  keyPress(e){
+    if (e.which == 13 || e.keyCode == 13){
+      this.save()
+    }
+  }
+  
+  render () {
+/*
+  
+selectDistributor (value){
+    this.setState(Object.assign({}, ...this.state, {distributor_index: value}))
+  }
+
+    let dropdown
+    let dist 
+    if (this.state.distributor && this.state.distributor_index )
+      dist = this.state.distributor_index
+    if (this.distributors){
+      dropdown = <div>Distribuidor: <Dropdown auto source={this.distributors}
+		  value={dist}
+		  onChange={this.selectDistributor}/> </div>
+    }
+    */
+    return (
+      <div onChange={(e)=>{this.formChange(e)}}>
+	<h3>Editar Cliente</h3>
+	<Input type='text' ref='name' label='Nombres'
+	       name='name' value={this.state.name || ''}/>
+	<Input type='number' ref='phone' label='Telefono'
+	       name='tel' value={this.state.phone || ''}/>
+	<Input type='string' ref='email' label='Email'
+	       name='email' value={this.state.email || ''}/>
+	<Input type='string' ref='address' label='Direccion'
+	       name='address' value={this.state.address || ''}/>
+	{/*dropdown*/}
+	<Button label='Guardar' ref='save' raised primary onClick={this.save}/>
+      </div>
+    )
+  }
+
+}
+
+ClientEdit.propTypes = {
+  client: PropTypes.object,
+} 
+
+ClientEdit.contextTypes = {
+  router: PropTypes.object
+} 
+
+const mapStateToProps = (state) =>{
+  return {
+    clients: state.app.clients,
+    distributors: state.app.distributors,
+    client: state.app.client
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    save: (client) => {dispatch(saveClient(client))}
+  }
+}
+
+
+ClientEdit = connect(mapStateToProps, mapDispatchToProps)(ClientEdit)
+
+export {ClientEdit, ClientList}
+
+
+
+/*
+  constructor(props, context){
     super(props)
     this.props = props
     //console.log('constructor', props)
@@ -117,61 +208,4 @@ class ClientEdit extends Component{
   
   nameChange(e) { this.state.name = e}
   telChange(e) { this.state.tel = e}
-
-  
-  selectDistributor (value){
-    this.setState(Object.assign({}, ...this.state, {distributor_index: value}))
-  }
-
-  
-  render () {
-    let dropdown
-    let dist 
-    if (this.state.distributor && this.state.distributor_index )
-      dist = this.state.distributor_index
-    if (this.distributors){
-      dropdown = <div>Distribuidor: <Dropdown auto source={this.distributors}
-		  value={dist}
-		  onChange={this.selectDistributor}/> </div>
-    }
-    return (
-      <div>
-	<h3>Editar Cliente</h3>
-	<Input type='text' label='Nombres' name='name' onChange={this.nameChange}/>
-	<Input type='number' label='Telefono' name='tel'onChange={this.telChange}/>
-	{dropdown}
-	<Button label='Guardar' raised primary onClick={this.save}/>
-      </div>
-    )
-  }
-
-}
-
-ClientEdit.propTypes = {
-  router: PropTypes.object,
-  props: PropTypes.object,
-} 
-
-ClientEdit.contextTypes = {
-  router: PropTypes.object,
-} 
-
-const mapStateToProps = (state) =>{
-  return {
-    clients: state.app.clients,
-    distributors: state.app.distributors,
-    client: state.app.client
-  }
-}
-
-const mapDispatchToProps = (dispatch) =>{
-  return {
-    save: (client) => {dispatch(add_client(client))}
-  }
-}
-
-
-ClientEdit = connect(mapStateToProps, mapDispatchToProps)(ClientEdit)
-
-export {ClientEdit, ClientList}
-
+*/

@@ -66,7 +66,32 @@ describe('With client Edit Interface ', () => {
       const saveButton = TestUtils.scryRenderedComponentsWithType(clientEdit, Button)[0]
       expect(saveButton.props.label).to.equal('Guardar')
     })
-   
+
+    it('should submit the login form', (done) => {
+      
+      const button = ReactDOM.findDOMNode(clientEdit, loginForm.refs.loginButton);
+      //button should exist
+      
+      expect(button).to.exist;
+
+      //fill input values
+      let userName = ReactDOM.findDOMNode(loginForm, loginForm.refs.userName);
+
+      let password = ReactDOM.findDOMNode(loginForm, loginForm.refs.password);
+
+      userName.value = 'UserName';
+      Simulate.change(userName);
+
+      password.value = 'testpassword';
+      Simulate.change(password);
+
+      //submit
+      Simulate.click(button);
+      
+
+      done();
+    });
+  
 })
   
   
