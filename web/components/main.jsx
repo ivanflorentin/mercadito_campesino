@@ -1,18 +1,18 @@
-"use strict"
 
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import ToolboxApp from 'react-toolbox/lib/app'
-import Button from 'react-toolbox/lib/button'
-import Navigation from 'react-toolbox/lib/navigation'
+// import Button from 'react-toolbox/lib/button'
+// import Navigation from 'react-toolbox/lib/navigation'
 
-import { hashHistory, Router, Route, Link } from 'react-router'
+// import {hashHistory, Router, Route, Link} from 'react-router'
 
-import {MainAppBar, MainMenu} from './header'
-import MainDrawer from './drawer'
-import MainNavigation from './navigation'
+import {MainAppBar} from './header'
+// import MainDrawer from './drawer'
+// import MainNavigation from './navigation'
 
 import style from './style'
 
+/*
 class DashBoard extends Component {
   render() {
     return(
@@ -20,19 +20,19 @@ class DashBoard extends Component {
     )
   }
 }
+*/
 
 class MainContainer extends Component {
-  
-  constructor(props, context) { 
+
+  constructor(props, context) {
     super(props, context)
-    context.router
+    // context.router
   }
-  
-  render(){	
-    return (		
+
+  render() {
+    return (
 	    <ToolboxApp>
-	      <MainAppBar props={this.props} context={this.context}>
-	      </MainAppBar>
+	      <MainAppBar props={this.props} context={this.context}/>
 	      <section className={style.content}>
 		{this.props.children}
 	      </section>
@@ -41,6 +41,9 @@ class MainContainer extends Component {
   }
 }
 
+MainContainer.propTypes = {
+  children: PropTypes.Array
+}
 
 MainContainer.contextTypes = {
   router: React.PropTypes.object.isRequired

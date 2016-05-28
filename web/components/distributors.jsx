@@ -1,29 +1,27 @@
-'use strict'
 
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux' 
+import React, {Component, PropTypes} from 'react'
+import {connect} from 'react-redux'
 import {Button, Input, Table} from 'react-toolbox'
 import {add_distributor} from '../actions'
 
 let DistributorList = (props, context) =>{
   const distributors = props.distributors
   const DistributorModel = {
-    name: {type: String, title:'Nombre'}
+    name: {type: String, title: 'Nombre'}
   }
 
-  return(
+  return (
     <div>
       <h3>Centros de Distribucion
       	<Button icon='add' floating accent mini
 		onClick={()=>{context.router.push('/distributorEdit')}}/>
       </h3>
-      <Table model={DistributorModel} source={distributors} />    
+      <Table model={DistributorModel} source={distributors} />
     </div>)
 }
 
 DistributorList.propTypes = {
-  context: PropTypes.object,
-  props: PropTypes.object,
+  distributors: PropTypes.Array
 }
 
 DistributorList.contextTypes = {
@@ -38,9 +36,8 @@ const distributorList_mapStateToProps = ({app}) => {
 DistributorList = connect(distributorList_mapStateToProps)(DistributorList)
 
 
-
-class DistributorEdit extends Component{
-  constructor(props, context){
+class DistributorEdit extends Component {
+  constructor(props, context) {
     super(props)
     this.distributor = props.distributor || {}
     this.save = this.save.bind(this)
@@ -48,24 +45,24 @@ class DistributorEdit extends Component{
     this.change = this.change.bind(this)
     this.context = context
   }
-  
-  save(){
+
+  save() {
     this.props.save(this.distributor)
-    this.context.router.push('/DistributorList')  
+    this.context.router.push('/DistributorList')
   }
-  
-  change(e){
+
+  change(e) {
     this.distributor.name = e
   }
-  
-  keyPress(e){
-    if (e.which == 13 || e.keyCode == 13){
+
+  keyPress(e) {
+    if (e.which === 13 || e.keyCode === 13) {
       this.save()
     }
   }
 
 
-  render () {
+  render() {
     return (
       <div>
 	<h3>Agregar Centro de Distribucion</h3>
@@ -81,17 +78,15 @@ class DistributorEdit extends Component{
 }
 
 DistributorEdit.propTypes = {
-  router: PropTypes.object,
-  props: PropTypes.object,
-} 
+  distributor: PropTypes.object,
+  save: PropTypes.function
+}
 DistributorEdit.contextTypes = {
   router: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) =>{
-  return {
-    state: state 
-  }
+  return {state}
 }
 
 const mapDispatchToProps = (dispatch) =>{
@@ -104,5 +99,4 @@ const mapDispatchToProps = (dispatch) =>{
 
 DistributorEdit = connect(mapStateToProps, mapDispatchToProps)(DistributorEdit)
 
-  
 export {DistributorList, DistributorEdit}

@@ -1,8 +1,7 @@
-'use strict'
 
 
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux' 
+import React, {Component, PropTypes} from 'react'
+import {connect} from 'react-redux'
 import {Button, Input, Table} from 'react-toolbox'
 
 import {add_producer} from '../actions'
@@ -10,10 +9,10 @@ import {add_producer} from '../actions'
 let ProducerList = (props, context) =>{
   const producers = props.producers
   const ProducerModel = {
-    name: {type: String, title:'Nombre'}
+    name: {type: String, title: 'Nombre'}
   }
 
-  return(
+  return (
     <div>
       <h3>Productores
       	<Button icon='add' floating accent mini
@@ -25,8 +24,7 @@ let ProducerList = (props, context) =>{
 }
 
 ProducerList.propTypes = {
-  context: PropTypes.object,
-  props: PropTypes.object,
+  producers: PropTypes.Array
 }
 
 ProducerList.contextTypes= {
@@ -41,34 +39,33 @@ const producerList_mapStateToProps = ({app}) => {
 ProducerList = connect(producerList_mapStateToProps)(ProducerList)
 
 
+class ProducerEdit extends Component {
 
-class ProducerEdit extends Component{
-
-  constructor(props, context){
+  constructor(props, context) {
     super(props)
     this.producer = props.producer || {}
     this.save = this.save.bind(this)
     this.keyPress = this.keyPress.bind(this)
     this.change = this.change.bind(this)
-    this.context =context  
+    this.context = context
   }
-  
-  save(){
+
+  save() {
     this.props.save(this.producer)
-    this.context.router.push('/producerList')  
+    this.context.router.push('/producerList')
   }
-  
-  change(e){
+
+  change(e) {
     this.producer.name = e
   }
-  
-  keyPress(e){
-    if (e.which == 13 || e.keyCode == 13){
+
+  keyPress(e) {
+    if (e.which === 13 || e.keyCode === 13) {
       this.save()
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
 	<h3> Agregar Productor</h3>
@@ -84,21 +81,19 @@ class ProducerEdit extends Component{
 }
 
 ProducerEdit.propTypes = {
-  router: PropTypes.object,
-  props: PropTypes.object,
-} 
+  producer: PropTypes.object,
+  save: PropTypes.function
+}
 
 ProducerEdit.contextTypes = {
   router: PropTypes.object.isRequired
 }
 const mapStateToProps = (state) =>{
-  return {
-    state: state 
-  }
+  return {state}
 }
 
 const mapDispatchToProps = (dispatch) =>{
-  return { save: (producer) =>{
+  return {save: (producer) =>{
     dispatch(add_producer(producer))
   }
   }
@@ -107,5 +102,4 @@ const mapDispatchToProps = (dispatch) =>{
 
 ProducerEdit = connect(mapStateToProps, mapDispatchToProps)(ProducerEdit)
 
-  
 export {ProducerList, ProducerEdit}

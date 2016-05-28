@@ -1,4 +1,3 @@
-'use strict'
 
 export const LOAD_PRODUCERS = 'LOAD_PRODUCERS'
 export const ADD_PRODUCER = 'ADD_PRODUCER'

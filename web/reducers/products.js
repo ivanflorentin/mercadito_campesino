@@ -1,27 +1,26 @@
-'use strict'
-import *  as productReducer  from './product'
+
+import * as productReducer from './product'
 import {validateProduct} from '../actions'
-import {VALIDATE_PRODUCT,
+import {
 	LOAD_PRODUCTS,
 	SAVE_PRODUCT} from '../constants'
 
 export const products = (state = [], action) =>{
-  switch (action.type){
-    case LOAD_PRODUCTS: {
-      return action.products
-    }
-    case SAVE_PRODUCT: {
-      const validated = productReducer.product(
-	{}, validateProduct(action.product)
+  switch (action.type) {
+  case LOAD_PRODUCTS: {
+    return action.products
+  }
+  case SAVE_PRODUCT: {
+    const validated = productReducer.product(
+      {}, validateProduct(action.product)
       )
-      if (validated.isValid){
-	return [...state, validated]
-      }
-      return state
+    if (validated.isValid) {
+      return [...state, validated]
     }
-    default: {
-      return state
-    }
-  } 
-
+    return state
+  }
+  default: {
+    return state
+  }
+  }
 }

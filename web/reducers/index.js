@@ -1,6 +1,5 @@
-'use strict'
 
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 
 import {server} from './server'
 import {cathegories} from './cathegories'

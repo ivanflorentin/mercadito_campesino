@@ -1,12 +1,10 @@
-'use strict'
-
 
 import {LOAD_PURCHASE_ORDERS,
 	SAVE_PURCHASE_ORDER,
 	CLEAR_PURCHASE_ORDER} from '../constants'
 
 export const loadPurchaseOrders = (purchaseOrders) =>{
-  return {type: LOAD_PURCHASE_ORDERS, purchasOrders}
+  return {type: LOAD_PURCHASE_ORDERS, purchaseOrders}
 }
 
 export const savePurchaseOrder = (purchaseOrder) => {

@@ -1,10 +1,8 @@
-'use strict'
 
-import { LOAD_PRODUCERS,
-	 ADD_PRODUCER,
-	 DELETE_PRODUCER,
-	 REPLACE_PRODUCER} from '../constants'
-
+import {LOAD_PRODUCERS,
+	ADD_PRODUCER,
+	DELETE_PRODUCER,
+	REPLACE_PRODUCER} from '../constants'
 
 export const load_producers = (producers) =>{
   return {type: LOAD_PRODUCERS, producers}

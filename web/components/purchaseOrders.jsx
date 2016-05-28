@@ -1,24 +1,21 @@
-'use strict'
 
-
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux' 
-import {Button, Input, Dropdown, Table} from 'react-toolbox'
-
+import React, {Component, PropTypes} from 'react'
+import {connect} from 'react-redux'
+import {Button, Table} from 'react-toolbox'
+import {savePurchaseOrder, clearPurchaseOrder} from '../actions'
 
 let PurchaseOrderList = (props, context) =>{
-  const purchaseOrders = props.purchasOrders
+  const purchaseOrders = props.purchaseOrders
   const PurchaseOrderModel = {
     client: {type: String, title: 'Cliente'},
-    date: {type: String, title:'Fecha'},
+    date: {type: String, title: 'Fecha'},
     qty: {type: String, title: 'Cantidad'},
-    total_ammount: {type: Number, title:'Monto Total'},
+    total_ammount: {type: Number, title: 'Monto Total'}
   }
-  
-  return(
+  return (
     <div>
       <h3>Pedidos de Compra
-      	<Button icon='add' floating accent mini
+	<Button icon='add' floating accent mini
 		onClick={()=>{context.router.push('/purchaseOrderEdit')}}/>
       </h3>
       <Table model={PurchaseOrderModel} source={purchaseOrders}/>
@@ -28,6 +25,7 @@ let PurchaseOrderList = (props, context) =>{
 PurchaseOrderList.propTypes = {
   context: PropTypes.object,
   props: PropTypes.object,
+  purchaseOrders: PropTypes.object
 }
 
 PurchaseOrderList.contextTypes = {
@@ -40,20 +38,20 @@ const purchaseOrderList_mapStateToProps = ({app}) => {
 
 PurchaseOrderList = connect(purchaseOrderList_mapStateToProps)(PurchaseOrderList)
 
-  
-class  PurchaseOrderEdit extends Component {
-  constructor(props, context){
+
+class PurchaseOrderEdit extends Component {
+  constructor(props, context) {
     super(props)
     this.props = props
     this.context = context
     this.purchaseOrder = Object.assign({}, props.purchaseOrder)
     this.client = props.client
     this.products = props.products
-    console.log(this.products)
+    // console.log(this.products)
 //    this.validate = this.validate.bind(this)
     this.render = this.render.bind(this)
-    this.save = this.save.bind(this)  
-  } 
+    this.save = this.save.bind(this)
+  }
 /*
   validate(){
     const refs = this.refs
@@ -66,37 +64,38 @@ class  PurchaseOrderEdit extends Component {
     }
     this.props.validator(this.product)
   }
-  
+
   save(){
     if (this.product.isValid){
       this.props.save(this.product)
     }
     this.props.clear()
-    this.context.router.push('/productList') 
+    this.context.router.push('/productList')
   }
   */
-  save(){}
-  
+  save() {}
+
   render() {
     let client
-    if (this.client && this.client.name){
+    if (this.client && this.client.name) {
       client = <div>Cliente: {this.client.name}, Telefono: {this.client.tel} </div>
-    }else{
+    } else {
       client = <Button label='Elejir Cliente' raised primary
-		       onClick={()=>{this.context.router.push('/clientList')}}/>
+		onClick={()=>{this.context.router.push('/clientList')}}/>
     }
-    
+/* eslint-disable no-mixed-spaces-and-tabs */
     return (
       <div>
 	<h3>Pedido de Compra</h3>
 	<div>
 	  {client}
 	</div>
-	<div>   
+	<div>
 	  <Button label='Guardar' raised primary onClick={this.save}/>
 	</div>
       </div>
     )
+/* eslint-enable  no-mixed-space-and-tabs */
   }
 }
 
@@ -104,12 +103,15 @@ class  PurchaseOrderEdit extends Component {
 PurchaseOrderEdit.propTypes = {
   context: PropTypes.object,
   props: PropTypes.object,
+  purchaseOrder: PropTypes.object,
+  client: PropTypes.object,
+  products: PropTypes.object
 }
 
 PurchaseOrderEdit.contextTypes = {
   router: PropTypes.object,
-  props: PropTypes.object,
-} 
+  props: PropTypes.object
+}
 
 
 const mapStateToProps = ({app}) =>{
@@ -119,7 +121,7 @@ const mapStateToProps = ({app}) =>{
 const mapDispatchToProps = (dispatch) =>{
   return {
     save: (purchaseOrder) => {
-      return (dispatch(savePurchaseOrder(purchaseOrder)))
+      return dispatch(savePurchaseOrder(purchaseOrder))
     },
     clear: () => {
       return dispatch(clearPurchaseOrder())
@@ -130,6 +132,5 @@ const mapDispatchToProps = (dispatch) =>{
 
 PurchaseOrderEdit = connect(mapStateToProps, mapDispatchToProps)(PurchaseOrderEdit)
 
-  
-  export {PurchaseOrderList, PurchaseOrderEdit}
+export {PurchaseOrderList, PurchaseOrderEdit}
 

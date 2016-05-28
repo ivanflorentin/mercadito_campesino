@@ -1,4 +1,3 @@
-'use strict'
 
 export const CREATE_CATHEGORY = 'CREATE_CATHEGORY'
 export const ADD_CATHEGRORY = 'ADD_CATHEGRORY'

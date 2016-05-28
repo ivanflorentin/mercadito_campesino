@@ -1,4 +1,3 @@
-'use strict'
 
 import {VALIDATE_PRODUCT,
 	CLEAR_PRODUCT} from '../constants'
@@ -8,5 +7,5 @@ export const validateProduct = (product) =>{
 }
 
 export const clearProduct = () =>{
-  return {type: CLEAR_PRODUCT }
-} 
+  return {type: CLEAR_PRODUCT}
+}

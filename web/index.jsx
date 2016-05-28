@@ -1,20 +1,19 @@
-"use strict"
 
 import thunkMiddleware from 'redux-thunk'
-import createLogger from 'redux-logger'
-import { combineReducers, createStore, applyMiddleware } from 'redux'
+// import createLogger from 'redux-logger'
+import {combineReducers, createStore, applyMiddleware} from 'redux'
 
-import { createDevTools } from 'redux-devtools'
+// import {createDevTools} from 'redux-devtools'
 
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import {render} from 'react-dom'
+import {Provider} from 'react-redux'
+import {Router, Route, browserHistory} from 'react-router'
+import {syncHistoryWithStore, routerReducer} from 'react-router-redux'
 
 import {reducers} from './reducers'
 
-import React, {Component} from 'react'
-import style from './style'
+import React from 'react'
+// import style from './style'
 import MainContainer from './components/main'
 
 import {CathegoryEdit, CathegoryList} from './components/cathegories'
@@ -28,25 +27,28 @@ import {DistributorList,
 import {PurchaseOrderList,
 	PurchaseOrderEdit} from './components/purchaseOrders'
 
-const loggerMiddleware = createLogger()
+// const loggerMiddleware = createLogger()
 
 const reducer = combineReducers({
   app: reducers,
   routing: routerReducer
 })
-  
+
 const store = createStore(
   reducer,
   applyMiddleware(
-    thunkMiddleware // lets us dispatch() functions
-//    loggerMiddleware   // neat middleware that logs actions 
+    thunkMiddleware
+    // lets us dispatch() functions
+//    loggerMiddleware   // neat middleware that logs actions
   )
 )
 
-//console.log('state in main: ' , store.getState())  
+// console.log('state in main: ' , store.getState())
 const history = syncHistoryWithStore(browserHistory, store)
 
-const root = (   
+/* eslint-disable no-mixed-spaces-and-tabs  */
+
+const root =
   <Provider store={store} >
     <div>
       <Router history={history}>
@@ -67,21 +69,25 @@ const root = (
       </Router>
     </div>
   </Provider>
-)
-  
+
+/* eslint-enable no-mixed-spaces-and-tabs  */
+
+
+/* eslint-disable no-console  */
 const renderedTree = render(root, document.getElementById('app'))
 
-import {Input, Button} from 'react-toolbox' 
-  
+import {Input, Button} from 'react-toolbox'
+
 import TestUtils from 'react-addons-test-utils'
 const labels = TestUtils.scryRenderedDOMComponentsWithTag(renderedTree, 'label')
 console.log('labels', labels)
 
-//--
+// --
 const inputs = TestUtils.scryRenderedComponentsWithType(renderedTree, Input)
 console.log('inputs', inputs)
 
-//--
+// --
 const botones = TestUtils.scryRenderedComponentsWithType(renderedTree, Button)
-console.log('botones:',botones)
+console.log('botones:', botones)
 
+/* eslint-enable no-console  */

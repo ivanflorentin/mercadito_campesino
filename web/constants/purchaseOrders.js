@@ -1,4 +1,3 @@
-'use strict'
 
 export const LOAD_PURCHASE_ORDERS = 'LOAD_PURCHASE_ORDERS'
 export const SAVE_PURCHASE_ORDER = 'SAVE_PURCHASE_ORDER'

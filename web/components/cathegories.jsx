@@ -1,22 +1,19 @@
-'use strict'
 
+import React, {Component, PropTypes} from 'react'
+import {connect} from 'react-redux'
+import {Button, Input, Table} from 'react-toolbox'
 
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux' 
-import {Button, Input, Table}  from 'react-toolbox'
-
-import { isAlphanumeric, contains } from 'validator'
-import {add_cathegory}  from '../actions'
-
+// import { isAlphanumeric, contains } from 'validator'
+import {add_cathegory} from '../actions'
 
 
 let CathegoryList = (props, context) =>{
-  const cathegories = props.cathegories  
+  const cathegories = props.cathegories
   const CathegoryModel = {
-    name: {type: String, title:'Nombre'}
+    name: {type: String, title: 'Nombre'}
   }
 
-  return(
+  return (
     <div>
       <h3>Categorias de Productos
 	<Button icon='add' floating accent mini
@@ -29,6 +26,7 @@ let CathegoryList = (props, context) =>{
 CathegoryList.propTypes = {
   context: PropTypes.object,
   props: PropTypes.object,
+  cathegories: PropTypes.Array
 }
 
 CathegoryList.contextTypes = {
@@ -42,35 +40,34 @@ const cathegoryList_mapStateToProps = ({app}) => {
 CathegoryList = connect(cathegoryList_mapStateToProps)(CathegoryList)
 
 
-class CathegoryEdit extends Component{
+class CathegoryEdit extends Component {
 
-  constructor (props, context) {
+  constructor(props, context) {
     super(props)
     this.cathegory = props.cathegory || {}
     this.change = this.change.bind(this)
     this.save = this.save.bind(this)
     this.keyPress = this.keyPress.bind(this)
     this.state = {}
-    this.context = context    
+    this.context = context
   }
-  
-  change(value){
+
+  change(value) {
     this.cathegory.name = value
   }
 
-  save(){
+  save() {
     this.props.save(this.cathegory)
     this.context.router.push('/cathegoryList')
-    
   }
-  
-  keyPress(e){
-    if (e.which == 13 || e.keyCode == 13){
-      this.Save()
+
+  keyPress(e) {
+    if (e.which === 13 || e.keyCode === 13) {
+      this.save()
     }
   }
-  
-  render(){
+/* eslint-disable no-mixed-spaces-and-tabs */
+  render() {
     return (
       <div>
 	<h3>Agregar Categoria</h3>
@@ -85,20 +82,23 @@ class CathegoryEdit extends Component{
     )
   }
 }
+/* eslint-enable no-mixed-spaces-and-tabs */
 
 
 CathegoryEdit.propTypes = {
   router: PropTypes.object,
   props: PropTypes.object,
+  save: PropTypes.function,
+  cathegory: PropTypes.object
 }
 
 CathegoryEdit.contextTypes = {
   router: React.PropTypes.object.isRequired
 }
- 
+
 const mapStateToProps = (state) =>{
   return {
-    cathegory: state.app.cathegory 
+    cathegory: state.app.cathegory
   }
 }
 
