@@ -3,9 +3,47 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {Button, Input, List, ListSubHeader, ListItem} from 'react-toolbox'
 
-// import {isAlphanumeric, contains} from 'validator'
-
 import {saveClient, selectClient} from '../actions'
+
+
+let ClientDisplay = (props, context) =>{
+  const client = props.client
+  if (!client.nombre) {
+    return <div></div>
+  }
+
+  return (
+    <div>
+      <div><h1>Cliente</h1></div>
+      <p> Nombres y Apellidos: {client.name} </p>
+      <p> Telefono: {client.phone} </p>
+      <p> Email {client.email} </p>
+      <p> Direccion {client.address} </p>
+      <div>
+	<Button icon='edit' floating accent mini
+		onClick={()=>{context.router.push('/recuperacion/abogado/Edit')}}/>
+	<Button icon='undo' floating accent mini
+		onClick={()=>{context.router.goBack()}}/>
+      </div>
+    </div>
+  )
+}
+
+ClientDisplay.propTypes = {
+  client: PropTypes.object
+}
+
+ClientDisplay.contextTypes= {
+  router: PropTypes.object.isRequired
+}
+
+const clientDisplay_mapStateToProps = ({app}) => {
+  return {abogado: app.client}
+}
+
+
+ClientDisplay = connect(clientDisplay_mapStateToProps)(ClientDisplay)
+
 
 let ClientList = (props, context) =>{
   const clients = props.clients
@@ -16,13 +54,15 @@ let ClientList = (props, context) =>{
 	<ListSubHeader caption='Clientes'/>
 	<Button icon='add' floating accent mini
 		onClick={()=>{context.router.push('/clientEdit')}}/>
-	{clients.map((client, index)=>{return <ListItem
-						  key={index}
-						  caption={client.name}
-						  legend={client.phone}					  onClick={()=>{props.select(clients[index])
-						      context.router.push('/clientEdit')
-						    }}/>
-	   })}
+	{clients.map((client, index)=>{
+	   return <ListItem
+		      key={index}
+		      caption={client.name}
+		      legend={client.phone}
+		      onClick={()=>{props.select(clients[index])
+			  context.router.push('/clientEdit')
+			}}/>
+	 })}
       </List>
     </div>)
 }
@@ -158,7 +198,7 @@ const mapDispatchToProps = (dispatch) =>{
 
 ClientEdit = connect(mapStateToProps, mapDispatchToProps)(ClientEdit)
 
-export {ClientEdit, ClientList}
+export {ClientDisplay, ClientEdit, ClientList}
 
 
 /*

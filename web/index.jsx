@@ -17,7 +17,7 @@ import React from 'react'
 import MainContainer from './components/main'
 
 import {CathegoryEdit, CathegoryList} from './components/cathegories'
-import {ClientEdit, ClientList} from './components/clients'
+import {ClientDisplay, ClientEdit, ClientList} from './components/clients'
 import {ProductList,
 	ProductEdit} from './components/products'
 import {ProducerList,
@@ -57,6 +57,7 @@ const root =
 	  <Route path='/cathegoryEdit' component={CathegoryEdit}/>
 	  <Route path='/clientEdit' component={ClientEdit}/>
 	  <Route path='/clientList' component={ClientList}/>
+	  <Route path='/clientDisplay' component={ClientDisplay}/>
 	  <Route path='/ProductList' component={ProductList}/>
 	  <Route path='/ProductEdit' component={ProductEdit}/>
 	  <Route path='/ProducerList' component={ProducerList}/>
