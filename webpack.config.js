@@ -1,16 +1,14 @@
-"use strict"
-
-const path = require('path')
-const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname,
   devtool: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './web/index.jsx'
+    './web/index.js'
   ],
   output: {
     path: path.join(__dirname, 'build'),
@@ -31,7 +29,7 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel',
         query: {
-           presets:['es2015','react']
+           presets: ['es2015', 'react']
         }
       },
 	// {//TODO: improve code before activating eslint
@@ -40,7 +38,7 @@ module.exports = {
         //   loader: 'eslint-loader'
 	// },
 	{
-        test: /(\.scss|\.css)$/,
+    test: /(\.scss|\.css)$/,
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox')
       }
     ]
@@ -50,11 +48,11 @@ module.exports = {
   },
   postcss: [autoprefixer],
   plugins: [
-    new ExtractTextPlugin('react-toolbox.css', { allChunks: true }),
+    new ExtractTextPlugin('react-toolbox.css', {allChunks: true}),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
   ]
-}
+};
