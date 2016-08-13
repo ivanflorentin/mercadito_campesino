@@ -12,5 +12,5 @@ const providers = mapProviders(apps)
 const defaultProps = {
   providers
 }
-console.log('DefaultProps:', defaultProps)
+// console.log('DefaultProps:', defaultProps)
 export default defaultProps

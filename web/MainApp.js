@@ -11,6 +11,6 @@ const MercaditoRoute = apps.MercaditoApp.routes
 const MainRoute =
       <Route path='/'>
          {MercaditoRoute}
-      </Route>
+    </Route>
 
 export {MainRoute, apps}

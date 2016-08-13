@@ -109,8 +109,8 @@ export default {
      listTitle: 'Pedidos',
      icon: 'list',
      fields: {
-       cliente: {uiType: 'string', icon: 'person'},
-       items: {type: 'oneToMany', component: 'pedidoItem'}
+       cliente: {type: 'manyToOne', component: 'cliente', remoteField: 'pedidos'},
+       items: {type: 'oneToMany', component: 'pedidoItem', remoteField: 'pedido'}
      }
     },
     {componentName: 'pedidoItem',
