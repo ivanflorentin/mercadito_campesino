@@ -5,8 +5,8 @@ export default {
   appTitle: 'Mercadito',
   appRoute: 'mercadito',
 
-  components: [
-    {componentName: 'producto',
+  models: [
+    {modelName: 'producto',
      title: 'Producto',
      listName: 'productos',
      listTitle: 'Productos',
@@ -38,7 +38,7 @@ export default {
 		    }
      }
     },
-    {componentName: 'productor',
+    {modelName: 'productor',
      title: 'Productor',
      listName: 'productores',
      listTitle: 'Productores',
@@ -54,7 +54,7 @@ export default {
        }
      }
     },
-    {componentName: 'cliente',
+    {modelName: 'cliente',
      title: 'Cliente',
      listName: 'clientes',
      listTitle: 'Clientes',
@@ -73,7 +73,7 @@ export default {
        direccion: {uiType: 'string', hint: 'Direccion', icon: 'location_on'}
      }
     },
-    {componentName: 'distribuidor',
+    {modelName: 'distribuidor',
      title: 'Distribuidor',
      listName: 'distribuidores',
      listTitle: 'Distribuidores',
@@ -88,7 +88,7 @@ export default {
        }
      }
     },
-    {componentName: 'categoria',
+    {modelName: 'categoria',
      title: 'Categoria',
      listName: 'cetegorias',
      listTitle: 'Categorias',
@@ -103,17 +103,17 @@ export default {
 	}
       }
     },
-    {componentName: 'pedido',
+    {modelName: 'pedido',
      title: 'pedido',
      listName: 'pedidos',
      listTitle: 'Pedidos',
      icon: 'list',
      fields: {
-       cliente: {type: 'manyToOne', component: 'cliente', remoteField: 'pedidos'},
-       items: {type: 'oneToMany', component: 'pedidoItem', remoteField: 'pedido'}
+       cliente: {type: 'manyToOne', model: 'cliente', remoteField: 'pedidos'},
+       items: {type: 'oneToMany', model: 'pedidoItem', remoteField: 'pedido'}
      }
     },
-    {componentName: 'pedidoItem',
+    {modelName: 'pedidoItem',
      title: 'pedidoItem',
      listName: 'pedidoItems',
      listTitle: 'Pedido Items',

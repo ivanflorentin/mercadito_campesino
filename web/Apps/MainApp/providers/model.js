@@ -3,8 +3,8 @@ export default {
   appTitle: 'Menu',
   appRoute: 'menu',
 
-  components: [
-    {componentName: 'menuItem',
+  models: [
+    {modelName: 'menuItem',
      title: 'MenuItem',
      listName: 'menues',
      listTitle: 'Menu',
