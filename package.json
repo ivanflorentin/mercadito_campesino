@@ -77,10 +77,13 @@
   "dependencies": {
     "connect-history-api-fallback": "^1.2.0",
     "immutability-helper": "^2.0.0",
+    "localforage": "^1.4.3",
     "pg": "^6.1.0",
     "provide-router": "^1.0.0-rc.9",
     "react-addons-update": "^15.3.0",
     "react-redux-provide": "^6.0.0-rc.56",
+    "redux-replicate": "^3.0.5",
+    "redux-replicate-localforage": "^3.0.2",
     "sequelize": "^3.24.0"
   },
   "babel": {

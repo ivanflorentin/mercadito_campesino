@@ -7,5 +7,5 @@ const apps = {
   MainApp
 }
 
-console.log('Apps index', apps)
+//console.log('Apps index', apps)
 export default apps

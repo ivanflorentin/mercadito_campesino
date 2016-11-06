@@ -1,14 +1,14 @@
 import 'react-redux-provide/lib/install'
 import {render} from 'react-dom'
-import {Router, Route, browserHistory} from 'react-router'
+import {browserHistory} from 'react-router'
 
-import React, {Component, PropTypes} from 'react'
+import React from 'react'
 import {MainRoute, apps} from './MainApp'
 
 import defaultProps from './defaultProps'
 import provideRouter from 'provide-router'
 
-import {createMainContainer} from 'provide-app-crud'
+import {createMainContainer} from 'provideUI'
 
 defaultProps.providers.router = provideRouter(browserHistory)
 
