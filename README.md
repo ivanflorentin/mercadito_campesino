@@ -1,6 +1,6 @@
 # Mercadito Campesino
 
-## A test web app buit with provide, provideModel, provideUI, react toolbox
+## A test web app built with provide, provideModel, provideUI, react toolbox
 
 You will need first to install locally:
 
